@@ -37,42 +37,45 @@ def get_tables():
     table_names = [table[0] for table in tables]
     return jsonify({"tables": table_names}), 200
 # -------------------------------------------------
-@app.route('/cadastro', methods = ['GET', 'POST'])
+@app.route('/cadastro', methods=['GET', 'POST'])
 def userRegistration():
     if request.method == "POST":
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['senha']
-
-        if not name or not email or not password:
-            return 'Dados incompletos', 400
-
-        passwordInBytes = password.encode('utf-8')
-        passwordHash = bcrypt.hashpw(passwordInBytes, bcrypt.gensalt())
-
-
-        con = get_db_connection()
-        cursor = con.cursor()
-
-        cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
-        existing_user = cursor.fetchone()
-
-        if existing_user:
-            return render_template('registerPage.html', error='Email já está em uso')
-        
         try:
+            name = request.form['name']
+            email = request.form['email']
+            password = request.form['senha']
+
+            if not name or not email or not password:
+                return 'Dados incompletos', 400
+
+            passwordInBytes = password.encode('utf-8')
+            passwordHash = bcrypt.hashpw(passwordInBytes, bcrypt.gensalt()).decode('utf-8')
+
+            con = get_db_connection()
+            cursor = con.cursor()
+
+            cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+            existing_user = cursor.fetchone()
+
+            if existing_user:
+                cursor.close()
+                con.close()
+                return render_template('registerPage.html', error='Email já está em uso')
+
             cursor.execute(
                 "INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",
                 (name, email, passwordHash)
             )
             con.commit()
-            return redirect(url_for('userRegistration'))  
-        except Exception as e:
-            con.rollback()
-            return f"Erro: {str(e)}"
-        finally:
+
             cursor.close()
             con.close()
+
+            return redirect(url_for('userRegistration'))
+
+        except Exception as e:
+            print(f"Erro no cadastro: {e}")
+            return f"Erro no cadastro: {str(e)}", 500
 
     return render_template('registerPage.html')
 
