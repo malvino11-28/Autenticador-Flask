@@ -37,11 +37,11 @@ def login():
                     session['username'] = user['name']
                     return redirect(url_for('login_bp.dashboard'))
                 else:
-                    return 'Senha incorreta.'
+                    return render_template('login.html', error='Senha incorreta.')
             else:
-                return 'Usuário não encontrado.'
+                return render_template('login.html', error='Usuário não encontrado')
         except Exception as e:
-            return f'Erro no login: {str(e)}'
+            return render_template('login.html', error=f'Erro no login: {str(e)}')
         finally:
             cursor.close()
             con.close()
@@ -52,7 +52,7 @@ def login():
 def dashboard():
     if 'session_id' in session:
         username = session['username']
-        return f'Bem-vindo, {username}'
+        return render_template('dashboard.html', username=username)
     else:
         return redirect(url_for('login_bp.login'))
     
