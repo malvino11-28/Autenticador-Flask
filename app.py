@@ -12,13 +12,17 @@ app.secret_key = os.getenv('FLASK_SECRET')
 
 app.register_blueprint(login_bp)
 
+@app.route("/")
+def home():
+    return redirect(url_for("login_bp.login"))
+
 def get_db_connection():
     return mysql.connector.connect(
         host=os.getenv('DB_HOST'),
         user=os.getenv('DB_USER'),
         password=os.getenv('DB_PASSWORD'),
         database=os.getenv('DB_NAME'),
-        port=os.getenv("DB_PORT")
+        port=int(os.getenv("DB_PORT"))
     )
 
 @app.route('/getTables', methods = ['GET'])
