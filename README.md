@@ -2,7 +2,7 @@
 
 Este é um projeto simples de autenticação de usuários utilizando Flask e MySQL. O objetivo principal é a prática de desenvolvimento de APIs com Flask, incluindo funcionalidades básicas de cadastro, login e dashboard. O foco do projeto está no backend, portanto o frontend (HTML) é propositalmente simples.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 - Cadastro de usuários com senha criptografada (bcrypt)
 - Login de usuários com verificação de senha
@@ -10,7 +10,7 @@ Este é um projeto simples de autenticação de usuários utilizando Flask e MyS
 - Logout de sessão
 - Exibição de tabelas existentes no banco de dados
 
-## 🛠️ Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - Python
 - Flask
@@ -18,7 +18,7 @@ Este é um projeto simples de autenticação de usuários utilizando Flask e MyS
 - bcrypt
 - dotenv
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 flask-auth-app/
@@ -36,7 +36,7 @@ flask-auth-app/
 
 ```
 
-## ⚙️ Configuração do ambiente
+## Configuração do ambiente
 
 Crie um arquivo `.env` baseado no `.env.example`:
 
@@ -48,7 +48,7 @@ DB_NAME=dbdoll
 FLASK_SECRET=segredo_super_secreto
 ```
 
-## 🧪 Banco de Dados
+## Banco de Dados
 
 Para configurar o banco de dados, execute o conteúdo do arquivo `schema.sql` no seu MySQL.
 
@@ -56,7 +56,7 @@ Para configurar o banco de dados, execute o conteúdo do arquivo `schema.sql` no
 mysql -u root -p < schema.sql
 ```
 
-## ▶️ Rodando a aplicação
+## Rodando a aplicação
 
 Instale as dependências:
 
@@ -72,7 +72,7 @@ python app.py
 
 Acesse via: `http://127.0.0.1:5000`
 
-## 🔐 Rotas principais
+## Rotas principais
 
 | Método | Rota       | Descrição                 |
 | ------ | ---------- | ------------------------- |
@@ -84,11 +84,11 @@ Acesse via: `http://127.0.0.1:5000`
 | GET    | /logout    | Logout do usuário         |
 | GET    | /getTables | Lista as tabelas do banco |
 
-## 📌 Notas
+## Notas
 
 - Este projeto é destinado ao estudo de backend com Flask. O frontend é simples pois não é o foco.
 - A API pode ser expandida para incluir mais funcionalidades como reset de senha, implementar testes automatizados, integração com APIs externas ou conexão com frontend SPA (React, Vue etc).
 
-## 🧠 Autor
+## Autor
 
 Feito como parte de prática de desenvolvimento com Flask e MySQL.
