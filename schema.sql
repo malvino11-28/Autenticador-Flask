@@ -1,8 +1,6 @@
--- Cria o banco de dados se ele não existir
-CREATE DATABASE IF NOT EXISTS dbdoll;
-USE dbdoll;
+CREATE DATABASE IF NOT EXISTS auth_flask;
+USE auth_flask;
 
--- Cria a tabela users se ela não existir
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -10,6 +8,5 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL
 );
 
--- (Opcional) Insere um usuário exemplo, mas só se ainda não existir com esse e-mail
 INSERT IGNORE INTO users (name, email, password)
-VALUES ('Juão', 'juao@email.com', 'senha123');
+VALUES ('João', 'joao@email.com', 'senha123');
