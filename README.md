@@ -18,6 +18,10 @@ Este é um projeto simples de autenticação de usuários utilizando Flask e MyS
 - bcrypt
 - dotenv
 
+## Deploy
+
+Acesse o site aqui: [https://autenticador-flask-production.up.railway.app/cadastro]
+
 ## Estrutura do Projeto
 
 ```
